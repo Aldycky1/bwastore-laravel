@@ -28,7 +28,7 @@ class CartController extends Controller
 
         $cart->delete();
 
-        return redirect()->route('pages.cart');
+        return redirect()->route('cart');
     }
 
     public function success()

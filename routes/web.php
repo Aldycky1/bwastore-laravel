@@ -19,6 +19,7 @@ Route::get('/categories/{id}', 'CategoryController@detail')->name('categories-de
 Route::get('/details/{id}', 'DetailController@index')->name('detail');
 Route::post('/details/{id}', 'DetailController@add')->name('detail-add');
 Route::get('/cart', 'CartController@index')->name('cart');
+Route::delete('/cart/{id}', 'CartController@delete')->name('cart-delete');
 Route::get('/success', 'CartController@success')->name('success');
 
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
@@ -49,10 +50,10 @@ Route::prefix('admin')
   ->namespace('Admin')
   ->group(function () {
     Route::get('/', 'DashboardController@index')->name('admin-dashboard');
-    Route::resource('category', 'CategoryController');
-    Route::resource('user', 'UserController');
-    Route::resource('product', 'ProductController');
-    Route::resource('product-gallery', 'ProductGalleryController');
+    Route::resource('/category', 'CategoryController');
+    Route::resource('/user', 'UserController');
+    Route::resource('/product', 'ProductController');
+    Route::resource('/product-gallery', 'ProductGalleryController');
   });
 
 Auth::routes();

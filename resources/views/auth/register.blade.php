@@ -222,7 +222,7 @@
                         // handle success
                         console.log(response);
                     });
-            }
+            },
         },
         data() {
             return{
@@ -231,7 +231,7 @@
                 is_store_open: true,
                 store_name: "",
                 email_unavailable: false,
-            }
+            },
         },
     });
 </script>
