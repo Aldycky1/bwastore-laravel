@@ -88,7 +88,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="row" data-aos="fade-up" data-aos-delay="100">
+                <div class="row" data-aos="fade-up" data-aos-delay="150">
                     <div class="col-12">
                         <hr />
                     </div>
@@ -96,7 +96,9 @@
                         <h2 class="mb-4">Shipping Details</h2>
                     </div>
                 </div>
-                <form action="" id="locations">
+                <form action="{{ route('checkout') }}" id="locations" enctype="multipart/form-data" method="POST">
+                    @csrf
+                    <input type="hidden" name="total_price" value="{{ $totalPrice }}">
                     <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -106,7 +108,7 @@
                                 class="form-control"
                                 id="address_one"
                                 name="address_one"
-                                value="Setra Duta Cemara"
+                                value="Ujung Harapan"
                                 />
                             </div>
                         </div>
@@ -118,7 +120,7 @@
                                 class="form-control"
                                 id="address_two"
                                 name="address_two"
-                                value="Blok B2 No. 34"
+                                value="Gang Abadi XII, No. 41"
                                 />
                             </div>
                         </div>
@@ -148,7 +150,7 @@
                                 class="form-control"
                                 id="zip_code"
                                 name="zip_code"
-                                value="123999"
+                                value="17610"
                                 />
                             </div>
                         </div>
@@ -203,10 +205,10 @@
                             <div class="product-subtitle">Total</div>
                         </div>
                         <div class="col-8 col-md-3">
-                            <a
-                                href="/success.html"
+                            <button
+                                type="submit"
                                 class="btn btn-success mt-4 px-4 btn-block"
-                                >Checkout Now</a
+                                >Checkout Now</button
                             >
                         </div>
                     </div>
