@@ -28,10 +28,9 @@
                                       <div
                                           class="form-group"
                                       >
-                                          <label
-                                              >Store
-                                              Name</label
-                                          >
+                                        <label>
+                                            Store Name
+                                        </label>
                                           <input
                                               type="text"
                                               class="form-control"

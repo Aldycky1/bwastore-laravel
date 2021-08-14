@@ -11,7 +11,7 @@
                             Memulai untuk jual beli <br />
                             dengan cara terbaru
                         </h2>
-                        <form action="{{route('register')}}" method="POST" class="mt-3">
+                        <form action="{{ route('register') }}" method="POST" class="mt-3">
                             @csrf
                             <div class="form-group">
                                 <label>Full Name</label>
@@ -202,7 +202,6 @@
                             }
                         console.log(response);
                     })
-              
                 }
             },
             data() {

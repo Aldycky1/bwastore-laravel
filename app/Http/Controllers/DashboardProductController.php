@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Http\Requests\Admin\ProductRequest;
 use App\Product;
 use App\ProductGallery;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class DashboardProductController extends Controller
 
     public function details(Request $request, $id)
     {
-        $product = Product::with(['productGalleries', 'user', 'category'])->firstOrFail($id);
+        $product = Product::with(['productGalleries', 'user', 'category'])->findOrFail($id);
         $categories = Category::all();
 
         return view('pages.dashboard-products-details', [
@@ -42,6 +43,14 @@ class DashboardProductController extends Controller
         ProductGallery::create($data);
 
         return redirect()->route('dashboard-product-details', $request->products_id);
+    }
+
+    public function deleteGallery(Request $request, $id)
+    {
+        $item = ProductGallery::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('dashboard-product-details', $item->products_id);
     }
 
     public function create()
@@ -66,6 +75,19 @@ class DashboardProductController extends Controller
         ];
 
         ProductGallery::create($gallery);
+
+        return redirect()->route('dashboard-product');
+    }
+
+    public function update(ProductRequest $request, $id)
+    {
+        $data = $request->all();
+
+        $item = Product::findOrFail($id);
+
+        $data['slug'] = Str::slug($request->name);
+
+        $item->update($data);
 
         return redirect()->route('dashboard-product');
     }
