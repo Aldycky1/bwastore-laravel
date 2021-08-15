@@ -81,8 +81,7 @@
                                                     for="openStoreFalse"
                                                     class="custom-control-label"
                                                 >
-                                                    Sementara
-                                                    Tutup
+                                                    Sementara Tutup
                                                 </label>
                                             </div>
                                         </div>
