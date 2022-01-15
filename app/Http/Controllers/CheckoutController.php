@@ -32,8 +32,8 @@ class CheckoutController extends Controller
         // Transaction Create
         $transaction = Transaction::create([
             'users_id' => Auth::user()->id,
-            'insurance_price' => 0,
-            'shipping_price' => 0,
+            'insurance_price' => 2,
+            'shipping_price' => 5,
             'total_price' => $request->total_price,
             'transaction_status' => 'PENDING',
             'code' => $code,

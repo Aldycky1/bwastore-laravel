@@ -162,8 +162,8 @@
 
         <!-- Bootstrap core JavaScript -->
         @stack('prepend-script')
-        <script src="/vendor/jquery/jquery.slim.min.js"></script>
-        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <script>
             AOS.init();
@@ -173,6 +173,15 @@
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
             });
+        </script>
+        <script>
+            $(document).ready(function() {
+                window.setTimeout(function() {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                        $(this).remove();
+                    });
+                }, 60000);
+            });    
         </script>
         @stack('addon-script')
     </body>

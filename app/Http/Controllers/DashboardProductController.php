@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Http\Requests\Admin\ProductRequest;
+use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Product;
 use App\ProductGallery;
 use Illuminate\Http\Request;
@@ -55,6 +56,10 @@ class DashboardProductController extends Controller
 
     public function create()
     {
+        if (Auth::user()->store_name === NULL && Auth::user()->categories_id === NULL) {
+            return redirect()->route('dashboard-settings-store', session()->flash('error', "Kamu harus ngisi nama toko dan pilih kategori toko dulu yaa!"));
+        }
+
         $categories = Category::all();
 
         return view('pages.dashboard-products-create', [
@@ -62,7 +67,7 @@ class DashboardProductController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $data = $request->all();
 
@@ -79,7 +84,7 @@ class DashboardProductController extends Controller
         return redirect()->route('dashboard-product');
     }
 
-    public function update(ProductRequest $request, $id)
+    public function update(ProductUpdateRequest $request, $id)
     {
         $data = $request->all();
 

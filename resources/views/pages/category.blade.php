@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Store Category Page
+    Shopay Category Page
 @endsection
 
 @section('content')

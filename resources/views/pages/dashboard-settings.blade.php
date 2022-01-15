@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Store Settings
+    Shopay Settings
 @endsection
 
 @section('content')
@@ -16,10 +16,11 @@
             <p class="dashboard-subtitle">
                 Make store that profitable
             </p>
+            @include('includes.alert')
         </div>
         <div class="dashboard-content">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12">                    
                     <form action="{{ route('dashboard-settings-redirect', 'dashboard-settings-store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card">
@@ -34,8 +35,12 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Kategori</label>
-                                            <select name="categories_id" class="form-control">                                             
-                                                <option value="{{ $user->categories_id }}">Tidak diganti</option>
+                                            <select name="categories_id" class="form-control">      
+                                                @if ($user->categories_id)
+                                                    <option value="{{ $user->categories_id }}">Tidak diganti ({{ $user->category->name }})</option> 
+                                                @else 
+                                                    <option>--Pilih Kategori Dulu--</option>                                                    
+                                                @endif                                       
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">
                                                         {{ $category->name }}

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Store Dashboard Transaction Detail
+    Shopay Dashboard Transaction Detail
 @endsection
 
 @section('content')

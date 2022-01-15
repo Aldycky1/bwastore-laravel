@@ -71,6 +71,7 @@ class RegisterController extends Controller
             'store_name' => ['nullable', 'string', 'max:255'],
             'categories_id' => ['nullable', 'integer', 'exists:categories,id'],
             'is_store_open' => ['required'],
+            'store_status' => ['nullable', 'integer'],
         ]);
     }
 
@@ -83,13 +84,14 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         // dd($data);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'store_name' => isset($data['store_name']) ? $data['store_name'] : '',
+            'is_store_open' => $data['is_store_open'],
+            'store_name' => isset($data['store_name']) ? $data['store_name'] : NULL,
             'categories_id' => isset($data['categories_id']) ? $data['categories_id'] : NULL,
-            'store_status' => isset($data['is_store_open']) ? 1 : 0,
         ]);
     }
 

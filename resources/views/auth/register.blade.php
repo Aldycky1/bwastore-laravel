@@ -44,6 +44,7 @@
                                     :class="{ 'is-invalid' : this.email_unavailable }"
                                     aria-describedby="emailHelp"
                                     v-model="email"
+                                    value="{{ old('email') }}"
                                     required 
                                     autocomplete="email" 
                                 />
@@ -54,7 +55,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
+                                <label>Password <span class="text-danger">(minimal 8 karakter)</span></label>
                                 <input 
                                     type="password" 
                                     id="password"  
@@ -62,6 +63,9 @@
                                     required 
                                     autocomplete="password" 
                                     class="form-control @error('password') is-invalid @enderror" 
+                                    value="{{ old('password') }}"
+                                    :disabled="this.email_unavailable"
+                                    minlength="8"
                                 />
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -76,7 +80,10 @@
                                     id="password_confirmation" 
                                     name="password_confirmation"
                                     autocomplete="new-password" 
-                                    class="form-control @error('password_confirmation') is-invalid @enderror"   
+                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                    value="{{ old('password_confirmation') }}"
+                                    :disabled="this.email_unavailable"
+                                    minlength="8"
                                 />
                                 @error('password_confirmation')
                                     <span class="invalid-feedback" role="alert">
@@ -97,10 +104,11 @@
                                         id="openStoreTrue"
                                         v-model="is_store_open"
                                         :value="true"
+                                        :disabled="this.email_unavailable"
                                     />
                                     <label class="custom-control-label" for="openStoreTrue">
                                         Iya, boleh
-                                    </label>
+                                    </label>                                    
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input
@@ -110,10 +118,25 @@
                                         id="openStoreFalse"
                                         v-model="is_store_open"
                                         :value="false"
+                                        :disabled="this.email_unavailable"
                                     />
                                     <label class="custom-control-label" for="openStoreFalse">
                                         Enggak, makasih
                                     </label>
+                                </div>
+                                <div class="form-group d-none" v-if="is_store_open">
+                                    <input                                                                                                                
+                                        name="store_status"
+                                        type="hidden"
+                                        value="1" 
+                                    />
+                                </div>
+                                <div class="form-group d-none" v-if="is_store_open === false">
+                                    <input                                                                                                                
+                                        name="store_status"
+                                        type="hidden"
+                                        value="0" 
+                                    />
                                 </div>
                             </div>
                             <div class="form-group" v-if="is_store_open">
@@ -127,6 +150,7 @@
                                     autofocus
                                     autocomplete
                                     aria-describedby="storeHelp"
+                                    :disabled="this.email_unavailable"
                                 />
                                 @error('store_name')
                                     <span class="invalid-feedback" role="alert">
@@ -136,7 +160,7 @@
                             </div>
                             <div class="form-group" v-if="is_store_open">
                                 <label>Kategori</label>
-                                <select name="categories_id" class="form-control">
+                                <select name="categories_id" class="form-control" :disabled="this.email_unavailable">
                                     <option value="" disabled>Select Category</option>
                                     @foreach ($categories as $category)
                                         <option option value="{{ $category->id }}">{{ $category->name }}</option>

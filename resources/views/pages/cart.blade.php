@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Store Cart Page
+    Shopay Cart Page
 @endsection
 
 @section('content')
@@ -43,7 +43,9 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $totalPrice = 0
+                                    $totalPrice = 0;
+                                    $insurance = 2;
+                                    $shippingPrice = 5;
                                 @endphp
                                 @forelse ($carts as $cart)
                                     <tr>
@@ -73,7 +75,7 @@
                                         </td>
                                     </tr>
                                     @php
-                                        $totalPrice += $cart->product->price
+                                        $totalPrice += $cart->product->price;                                        
                                     @endphp                      
                                 @empty
                                     <div 
@@ -84,6 +86,10 @@
                                         Carts Not Found
                                     </div>
                                 @endforelse
+                                @php
+                                    $totalPrice += $insurance;
+                                    $totalPrice += $shippingPrice;                                        
+                                @endphp
                             </tbody>
                         </table>
                     </div>
@@ -104,11 +110,12 @@
                             <div class="form-group">
                                 <label for="address_one">Address 1</label>
                                 <input
-                                type="text"
-                                class="form-control"
-                                id="address_one"
-                                name="address_one"
-                                value="Ujung Harapan"
+                                    type="text"
+                                    class="form-control"
+                                    id="address_one"
+                                    name="address_one"
+                                    value="{{Auth::user()->address_one}}"
+                                    required
                                 />
                             </div>
                         </div>
@@ -116,19 +123,19 @@
                             <div class="form-group">
                                 <label for="address_two">Address 2</label>
                                 <input
-                                type="text"
-                                class="form-control"
-                                id="address_two"
-                                name="address_two"
-                                value="Gang Abadi XII, No. 41"
+                                    type="text"
+                                    class="form-control"
+                                    id="address_two"
+                                    name="address_two"
+                                    value="{{Auth::user()->address_two}}"
                                 />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="provinces_id">Province</label>
-                                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id">
-                                    <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id" required>                                 
+                                        <option v-for="province in provinces" :value="province.id" >@{{ province.name }}</option>                                    
                                 </select>
                                 <select v-else class="form-control"></select>
                             </div>
@@ -136,7 +143,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="regencies_id">City</label>
-                                <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id">
+                                <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id" required>
                                     <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                                 </select>
                                 <select v-else class="form-control"></select>
@@ -146,11 +153,12 @@
                             <div class="form-group">
                                 <label for="zip_code">Postal Code</label>
                                 <input
-                                type="text"
-                                class="form-control"
-                                id="zip_code"
-                                name="zip_code"
-                                value="17610"
+                                    type="text"
+                                    class="form-control"
+                                    id="zip_code"
+                                    name="zip_code"
+                                    value="{{Auth::user()->zip_code}}"
+                                    required
                                 />
                             </div>
                         </div>
@@ -158,11 +166,12 @@
                             <div class="form-group">
                                 <label for="country">Country</label>
                                 <input
-                                type="text"
-                                class="form-control"
-                                id="country"
-                                name="country"
-                                value="Indonesia"
+                                    type="text"
+                                    class="form-control"
+                                    id="country"
+                                    name="country"
+                                    value="{{Auth::user()->country}}"
+                                    required
                                 />
                             </div>
                         </div>
@@ -170,11 +179,12 @@
                             <div class="form-group">
                                 <label for="phone_number">Mobile</label>
                                 <input
-                                type="text"
-                                class="form-control"
-                                id="phone_number"
-                                name="phone_number"
-                                value="+628 2020 11111"
+                                    type="text"
+                                    class="form-control"
+                                    id="phone_number"
+                                    name="phone_number"
+                                    value="{{Auth::user()->phone_number}}"
+                                    required
                                 />
                             </div>
                         </div>
@@ -189,27 +199,36 @@
                     </div>
                     <div class="row" data-aos="fade-up" data-aos-delay="200">
                         <div class="col-4 col-md-2">
-                            <div class="product-title">$10</div>
+                            <div class="product-title">$0</div>
                             <div class="product-subtitle">Country Tax</div>
                         </div>
                         <div class="col-4 col-md-3">
-                            <div class="product-title">$280</div>
+                            <div class="product-title">${{number_format($insurance ?? 0)}}</div>
                             <div class="product-subtitle">Product Insurance</div>
                         </div>
                         <div class="col-4 col-md-2">
-                            <div class="product-title">$580</div>
-                            <div class="product-subtitle">Ship to Jakarta</div>
+                            <div class="product-title">${{number_format($shippingPrice ?? 0)}}</div>
+                            <div class="product-subtitle">Shipping Price</div>
                         </div>
                         <div class="col-4 col-md-2">
                             <div class="product-title text-success">${{number_format($totalPrice ?? 0)}}</div>
                             <div class="product-subtitle">Total</div>
                         </div>
                         <div class="col-8 col-md-3">
-                            <button
-                                type="submit"
-                                class="btn btn-success mt-4 px-4 btn-block"
-                                >Checkout Now</button
-                            >
+                            @if ($carts->count() > 0)
+                                <button
+                                    type="submit"
+                                    class="btn btn-success mt-4 px-4 btn-block"
+                                    >Checkout Now</button
+                                >  
+                            @else
+                                <button
+                                    type="submit"
+                                    class="btn btn-success mt-4 px-4 btn-block" 
+                                    disabled
+                                    >Checkout Now</button
+                                >                                  
+                            @endif                            
                         </div>
                     </div>
                 </form>
