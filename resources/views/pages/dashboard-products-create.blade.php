@@ -71,9 +71,9 @@
                                         <div class="form-group">
                                             <label>Thumbnails</label>
                                             <input type="file" name="photo" class="form-control" />
-                                            <p class="text-muted">
+                                            {{-- <p class="text-muted">
                                                 Kamu dapat memilih lebih dari satu file
-                                            </p>
+                                            </p> --}}
                                         </div>
                                     </div>
                                 </div>
