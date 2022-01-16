@@ -69,7 +69,7 @@
                     <a href="#" class="nav-link"> Hi, Aldy </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link"> Cart </a>
+                    <a href="{{ route('cart') }}" class="nav-link"> Cart </a>
                 </li>
             </ul>
         </div>
