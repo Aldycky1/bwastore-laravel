@@ -229,6 +229,4 @@ return [
 
     ],
 
-    'log' => 'errorlog'
-
 ];
