@@ -95,7 +95,7 @@
                             <div class="row">
                                 @foreach ($product->productGalleries as $productGallery)
                                     <div class="col-md-4">
-                                        <div class="gallery-container">
+                                        <div class="gallery-container mb-3">
                                             <img
                                                 src="{{ Storage::url($productGallery->photos ?? '') }}"
                                                 alt=""
