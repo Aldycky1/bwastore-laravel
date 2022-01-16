@@ -21,10 +21,8 @@
                                     name="name"
                                     class="form-control @error('name') is-invalid @enderror"
                                     aria-describedby="nameHelp"
-                                    v-model="name"
                                     value="{{ old('name') }}"
                                     required
-                                    autocomplete="name"
                                     autofocus 
                                 />
                                 @error('name')
@@ -43,7 +41,6 @@
                                     class="form-control  @error('email') is-invalid @enderror"
                                     :class="{ 'is-invalid' : this.email_unavailable }"
                                     aria-describedby="emailHelp"
-                                    v-model="email"
                                     value="{{ old('email') }}"
                                     required 
                                     autocomplete="email" 
@@ -65,7 +62,6 @@
                                     class="form-control @error('password') is-invalid @enderror" 
                                     value="{{ old('password') }}"
                                     :disabled="this.email_unavailable"
-                                    minlength="8"
                                 />
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -83,7 +79,6 @@
                                     class="form-control @error('password_confirmation') is-invalid @enderror"
                                     value="{{ old('password_confirmation') }}"
                                     :disabled="this.email_unavailable"
-                                    minlength="8"
                                 />
                                 @error('password_confirmation')
                                     <span class="invalid-feedback" role="alert">
@@ -104,6 +99,7 @@
                                         id="openStoreTrue"
                                         v-model="is_store_open"
                                         :value="true"
+                                        value="{{ old('is_store_open') }}"
                                         :disabled="this.email_unavailable"
                                     />
                                     <label class="custom-control-label" for="openStoreTrue">
@@ -118,6 +114,7 @@
                                         id="openStoreFalse"
                                         v-model="is_store_open"
                                         :value="false"
+                                        value="{{ old('is_store_open') }}"
                                         :disabled="this.email_unavailable"
                                     />
                                     <label class="custom-control-label" for="openStoreFalse">
@@ -142,11 +139,11 @@
                             <div class="form-group" v-if="is_store_open">
                                 <label>Nama Toko</label>
                                 <input
-                                    v-model="store_name"
                                     id="store_name"
                                     name="store_name"
                                     type="text"
                                     class="form-control @error('store_name') is-invalid @enderror"
+                                    value="{{ old('store_name') }}"
                                     autofocus
                                     autocomplete
                                     aria-describedby="storeHelp"

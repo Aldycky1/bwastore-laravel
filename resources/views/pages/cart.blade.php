@@ -111,12 +111,16 @@
                                 <label for="address_one">Address 1</label>
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control @error('address_one') is-invalid @enderror"
                                     id="address_one"
                                     name="address_one"
-                                    value="{{Auth::user()->address_one}}"
-                                    required
+                                    value="{{old('address_one') ?: Auth::user()->address_one}}"                                    
                                 />
+                                @error('address_one')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>      
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -127,26 +131,36 @@
                                     class="form-control"
                                     id="address_two"
                                     name="address_two"
-                                    value="{{Auth::user()->address_two}}"
+                                    value="{{old('address_two') ?: Auth::user()->address_two}}"
                                 />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="provinces_id">Province</label>
-                                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id" required>                                 
+                                <select name="provinces_id" id="provinces_id" class="form-control @error('provinces_id') is-invalid @enderror" v-if="provinces" v-model="provinces_id">                                 
                                         <option v-for="province in provinces" :value="province.id" >@{{ province.name }}</option>                                    
                                 </select>
                                 <select v-else class="form-control"></select>
+                                @error('provinces_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>      
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="regencies_id">City</label>
-                                <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id" required>
+                                <select name="regencies_id" id="regencies_id" class="form-control @error('regencies_id') is-invalid @enderror" v-if="regencies" v-model="regencies_id">
                                     <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                                 </select>
                                 <select v-else class="form-control"></select>
+                                @error('regencies_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>      
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -154,12 +168,16 @@
                                 <label for="zip_code">Postal Code</label>
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control @error('zip_code') is-invalid @enderror"
                                     id="zip_code"
-                                    name="zip_code"
-                                    value="{{Auth::user()->zip_code}}"
-                                    required
+                                    name="zip_code"                                    
+                                    value="{{old('zip_code') ?: Auth::user()->zip_code}}"                                   
                                 />
+                                @error('zip_code')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>      
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -167,12 +185,16 @@
                                 <label for="country">Country</label>
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control @error('country') is-invalid @enderror"
                                     id="country"
                                     name="country"
-                                    value="{{Auth::user()->country}}"
-                                    required
+                                    value="{{old('country') ?: Auth::user()->country}}"                     
                                 />
+                                @error('country')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>      
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -180,12 +202,16 @@
                                 <label for="phone_number">Mobile</label>
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    class="form-control @error('phone_number') is-invalid @enderror"
                                     id="phone_number"
                                     name="phone_number"
-                                    value="{{Auth::user()->phone_number}}"
-                                    required
+                                    value="{{old('phone_number') ?: Auth::user()->phone_number}}"                                    
                                 />
+                                @error('phone_number')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>      
+                                @enderror
                             </div>
                         </div>
                     </div>

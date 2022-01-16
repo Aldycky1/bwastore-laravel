@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Cart;
+use App\Http\Requests\CheckoutRequest;
 use App\Transaction;
 use App\TransactionDetail;
 
@@ -17,7 +18,7 @@ use Midtrans\Notification;
 
 class CheckoutController extends Controller
 {
-    public function process(Request $request)
+    public function process(CheckoutRequest $request)
     {
         // Save users data
         $user = Auth::user();

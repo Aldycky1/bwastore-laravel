@@ -42,13 +42,13 @@
                                             <label>
                                                 Product Name
                                             </label>
-                                            <input type="text" class="form-control" name="name" />
+                                            <input type="text" class="form-control" name="name" value="{{ old('name') }}" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div>
                                             <label>Price</label>
-                                            <input type="number" class="form-control" name="price" />
+                                            <input type="number" class="form-control" name="price" value="{{ old('name') }}" />
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -64,7 +64,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea name="description" id="editor"></textarea>
+                                            <textarea name="description" id="editor">{!! old('description') !!}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
