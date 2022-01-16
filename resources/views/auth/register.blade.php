@@ -37,11 +37,11 @@
                                     type="email"
                                     id="email" 
                                     name="email"
+                                    v-model="email"
                                     @change="checkForEmailAvailability()"
                                     class="form-control  @error('email') is-invalid @enderror"
                                     :class="{ 'is-invalid' : this.email_unavailable }"
-                                    aria-describedby="emailHelp"
-                                    value="{{ old('email') }}"
+                                    aria-describedby="emailHelp"                                
                                     required 
                                     autocomplete="email" 
                                 />
